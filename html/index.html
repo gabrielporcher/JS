@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Documentaço</title>
+</head>
+<body>
+    <header>
+        <h1>Exercícios HTML</h1>
+    </header>
+
+    <nav>
+        <a href="exercicios/teste.html"> Ir p/ pagina </a> |
+        <a href linkdiferente="exercicios/teste.html"> Puxar</a> |
+        <a href linkdiferente="exercicios/texto1.html"> Texto </a> |
+        <a href linkdiferente="exercicios/listas.html"> Listas</a> |
+        <a href linkdiferente="exercicios/listaAninhada.html"> Lista aninhada</a>
+    </nav>
+
+    <section id="conteudo">
+        
+        Vai sumir
+
+    </section>
+
+    <footer>
+        <strong>Bla bla</strong>
+    </footer>
+
+    <script>
+        document.querySelectorAll('[linkdiferente]').forEach(link =>{ // Seleciona todos os links
+            link.onclick = function(e){ 
+                e.preventDefault() // Previne comportamento padrão [no caso do link, não deixa levar p/ outra página]
+                
+                const conteudo = document.getElementById('conteudo')
+                fetch(link.getAttribute('linkdiferente')).then(resp => resp.text()).then(html => conteudo.innerHTML = html) // Pega conteúdo do link, e insere na section CONTEUDO
+            }
+        })
+    </script>
+</body>
+</html>
